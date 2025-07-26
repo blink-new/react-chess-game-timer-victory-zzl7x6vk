@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 20% 92%;
+    --foreground: 30 15% 15%;
+    --card: 45 20% 95%;
+    --card-foreground: 30 15% 15%;
+    --popover: 45 20% 95%;
+    --popover-foreground: 30 15% 15%;
+    --primary: 25 50% 27%;
+    --primary-foreground: 45 20% 95%;
+    --secondary: 45 15% 85%;
+    --secondary-foreground: 30 15% 25%;
+    --muted: 45 15% 88%;
+    --muted-foreground: 30 10% 45%;
+    --accent: 45 85% 55%;
+    --accent-foreground: 30 15% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 45 15% 80%;
+    --input: 45 15% 80%;
+    --ring: 25 50% 27%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 30 25% 10%;
+    --foreground: 45 20% 90%;
+    --card: 30 25% 12%;
+    --card-foreground: 45 20% 90%;
+    --popover: 30 25% 12%;
+    --popover-foreground: 45 20% 90%;
+    --primary: 45 85% 55%;
+    --primary-foreground: 30 25% 10%;
+    --secondary: 30 15% 20%;
+    --secondary-foreground: 45 20% 80%;
+    --muted: 30 15% 18%;
+    --muted-foreground: 45 10% 60%;
+    --accent: 45 85% 55%;
+    --accent-foreground: 30 25% 10%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 15% 20%;
+    --input: 30 15% 20%;
+    --ring: 45 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+
+    font-family: Inter, sans-serif;
+  }
+}
+
+/* Chess piece animations */
+.chess-piece {
+  transition: all 0.2s ease-in-out;
+  cursor: grab;
+}
+
+.chess-piece:active {
+  cursor: grabbing;
+  transform: scale(1.1);
+}
+
+.chess-square {
+  transition: all 0.15s ease-in-out;
+}
+
+.chess-square.valid-move {
+  @apply ring-2 ring-accent ring-opacity-60;
+
+  background-color: rgb(212 175 55 / 20%);
+}
+
+.chess-square.selected {
+  @apply ring-2 ring-primary;
+
+  background-color: rgb(139 69 19 / 30%);
+}
+
+/* Victory celebration animation */
+@keyframes confetti {
+  0% { 
+    transform: translateY(-100vh) rotate(0deg); 
+    opacity: 100%; 
+  }
+
+  100% { 
+    transform: translateY(100vh) rotate(720deg); 
+    opacity: 0%; 
+  }
+}
+
+.confetti {
+  animation: confetti 3s linear infinite;
+}
+
+/* Timer pulse animation */
+@keyframes pulse-timer {
+  0%, 100% { 
+    opacity: 100%; 
+  }
+
+  50% { 
+    opacity: 70%; 
+  }
+}
+
+.timer-active {
+  animation: pulse-timer 1s ease-in-out infinite;
+}
